@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "PrintFile" ALTER COLUMN "color" SET DEFAULT 'false',
+ALTER COLUMN "color" SET DATA TYPE TEXT,
+ALTER COLUMN "front_back" SET DEFAULT 'false',
+ALTER COLUMN "front_back" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "PrintRequest" ALTER COLUMN "paid" SET DEFAULT 'false',
+ALTER COLUMN "paid" SET DATA TYPE TEXT;

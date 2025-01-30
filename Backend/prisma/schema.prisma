@@ -30,12 +30,14 @@ model PrintFile {
   id           Int    @id @default(autoincrement())
   cloud_address String  // Cloudinary URL
   copies       Int
-  color        Boolean @default(false)
-  front_back   Boolean @default(false)
-
+  color        String @default("false")
+  front_back   String @default("false")
+  amount         Int      @default(0)
   // Foreign Key to PrintRequest
   printRequestId Int
   printRequest   PrintRequest @relation(fields: [printRequestId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model PrintRequest {
@@ -48,5 +50,11 @@ model PrintRequest {
   email       String
   // Relation: One PrintRequest can have multiple PrintFiles
   printFiles PrintFile[]
+
+  paid         String    @default("false")   // Indicates if the print request has been paid for
+  total_amt    Int        @default(0)       // Total amount for the print request as Int
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 

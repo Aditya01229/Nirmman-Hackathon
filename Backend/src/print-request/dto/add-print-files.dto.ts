@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import { IsBoolean, IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class AddPrintFilesDto {
@@ -12,9 +13,9 @@ export class AddPrintFilesDto {
   @IsInt()
   copies: number;
 
-  @IsBoolean()
-  color: boolean;
+  @IsString()
+color: string;
 
-  @IsBoolean()
-  front_back: boolean;
+@IsString()
+front_back: string;
 }
