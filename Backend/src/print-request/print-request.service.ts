@@ -20,7 +20,6 @@ export class PrintRequestService {
 
   // ✅ Upload a Print File for an existing Print Request
   async addPrintFile(printRequestId: number, file: Express.Multer.File, fileDetails: AddPrintFilesDto) {
-    console.log(fileDetails);
 
     // Get the number of pages
     const pages = await this.getPdfPageCount(file.path); 
@@ -29,8 +28,6 @@ export class PrintRequestService {
 
     const color = fileDetails.color === 'true';
     const front_back = fileDetails.front_back === 'true';
-
-    console.log(pages, color, front_back);
     
     // Calculate the amount for the new file based on the provided logic
     let newFileAmount = 0;
@@ -77,10 +74,10 @@ export class PrintRequestService {
     });
 
     // Optionally update the total amount in the print request if you have a field for that
-    // await this.databaseService.printRequest.update({
-    //     where: { id: printRequestId },
-    //     data: { totalAmount: updatedTotalAmount }, // Assuming there's a totalAmount field
-    // });
+    await this.databaseService.printRequest.update({
+        where: { id: printRequestId },
+        data: { total_amt: updatedTotalAmount }, // Assuming there's a totalAmount field
+    });
 
     return updatedTotalAmount; // Return the updated total amount
   }

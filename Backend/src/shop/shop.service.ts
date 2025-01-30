@@ -95,8 +95,23 @@ export class AboutusService {
         const printer = await this.databaseService.shop.findUnique({
             where: { id: Number(id) },
         });
+
+        delete printer.password;
         return printer;
       }
 
+      async getQueue(id: number) {
+        const queue = await this.databaseService.printRequest.findMany({
+          where: { shopId: Number(id) },
+          orderBy: { createdAt: 'asc' },
+          include: {
+            printFiles: true,  // Include the related PrintFiles
+          },
+        });
+      
+        console.log(queue);
+      
+        return queue;
+      }
 }
 

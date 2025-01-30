@@ -39,5 +39,11 @@ export class AboutusController {
     async findOne(@UserId() id: number) {
         return this.aboutusService.findOne(id);
     }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('getqueue')
+    async getQueue(@UserId() id: number) {
+        return this.aboutusService.getQueue(id);
+    }
 }
 
