@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import * as dotenv from 'dotenv';
-import * as multer from 'multer';
+const multer = require('multer'); // CommonJS way of importing multer
 
 dotenv.config();
 
