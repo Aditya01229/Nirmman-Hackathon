@@ -1,35 +1,38 @@
+// src/cloudinary.service.ts
+
 import { Injectable } from '@nestjs/common';
 import { v2 as cloudinary } from 'cloudinary';
-import { ConfigService } from '@nestjs/config';
-import { UploadApiErrorResponse, UploadApiResponse } from 'cloudinary';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Injectable()
 export class CloudinaryService {
-  constructor(private configService: ConfigService) {
-    // Configure Cloudinary with credentials from environment variables
+  constructor() {
     cloudinary.config({
-      cloud_name: this.configService.get<string>('CLOUDINARY_CLOUD_NAME'),
-      api_key: this.configService.get<string>('CLOUDINARY_API_KEY'),
-      api_secret: this.configService.get<string>('CLOUDINARY_API_SECRET'),
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
     });
   }
 
-  async uploadImage(file: Express.Multer.File): Promise<string> {
+  async uploadImage(file: Express.Multer.File): Promise<any> {
     try {
-      return new Promise((resolve, reject) => {
-        const uploadStream = cloudinary.uploader.upload_stream(
-          { folder: 'campaigns' },
-          (error: UploadApiErrorResponse, result: UploadApiResponse) => {
-            if (error) {
-              reject(`Cloudinary upload error: ${error.message}`);
-            }
-            resolve(result.secure_url);
-          }
-        );
-        uploadStream.end(file.buffer);
+      const result = await cloudinary.uploader.upload(file.path, {
+        folder: 'print-requests',
       });
+      return result;
     } catch (error) {
       throw new Error(`Cloudinary upload failed: ${error.message}`);
+    }
+  }
+
+  async deleteImage(publicId: string): Promise<any> {
+    try {
+      const result = await cloudinary.uploader.destroy(publicId);
+      return result;
+    } catch (error) {
+      throw new Error(`Cloudinary delete failed: ${error.message}`);
     }
   }
 }

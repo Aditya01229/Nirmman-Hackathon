@@ -50,18 +50,3 @@ model PrintRequest {
   printFiles PrintFile[]
 }
 
-
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String   // This will store the hashed password
-  role      Role     @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-enum Role {
-  ADMIN
-  USER
-}
