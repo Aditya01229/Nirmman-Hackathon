@@ -53,6 +53,7 @@ model PrintRequest {
 
   paid         String    @default("false")   // Indicates if the print request has been paid for
   total_amt    Int        @default(0)       // Total amount for the print request as Int
+  done         String    @default("false")   // Indicates if the print request has been completed
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
