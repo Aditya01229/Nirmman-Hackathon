@@ -13,16 +13,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Campaign {
-  id          Int    @default(autoincrement()) @id
-  title       String
-  description String
-  photo       String   // URL or file path of the photo
-  amountToBeRaised Float
+model Shop {
+  id          Int      @id @default(autoincrement())
+  name        String
+  phn_number  String
+  email       String  @unique
+  password    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  // Relation: One Shop can have multiple PrintRequests
+  printRequests PrintRequest[]
 }
+
+model PrintFile {
+  id           Int    @id @default(autoincrement())
+  cloud_address String  // Cloudinary URL
+  copies       Int
+  color        Boolean @default(false)
+  front_back   Boolean @default(false)
+
+  // Foreign Key to PrintRequest
+  printRequestId Int
+  printRequest   PrintRequest @relation(fields: [printRequestId], references: [id])
+}
+
+model PrintRequest {
+  id        Int    @id @default(autoincrement())
+
+  // Foreign Key to Shop
+  shopId    Int
+  shop      Shop @relation(fields: [shopId], references: [id])
+  name      String
+  email       String
+  // Relation: One PrintRequest can have multiple PrintFiles
+  printFiles PrintFile[]
+}
+
 
 model User {
   id        Int      @id @default(autoincrement())
@@ -37,23 +64,4 @@ model User {
 enum Role {
   ADMIN
   USER
-}
-
-
-model AboutUs {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  image       String   // URL or file path of the image
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-
-model Contactform{
-  id Int @default(autoincrement()) @id
-  name String
-  email String
-  subject String
-  message String
 }
