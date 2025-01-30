@@ -1,0 +1,71 @@
+// controllers/checkout.controller.js
+const Cart = require('../models/cart.model');
+const Order = require('../models/order.model');
+const qr = require('qrcode');
+
+const generateOrderCode = () => {
+    return Math.random().toString(36).substring(2, 8).toUpperCase();
+};
+
+exports.checkoutCart = async (req, res) => {
+    try {
+        const { userId, tableNumber } = req.body;
+        
+        // Find user's cart
+        const cart = await Cart.findOne({ userId })
+            .populate('items.menuItem', 'name price');
+            
+        if (!cart || cart.items.length === 0) {
+            return res.status(404).json({ message: 'Cart is empty' });
+        }
+
+        // Format items for order
+        const orderItems = cart.items.map(item => ({
+            name: item.menuItem.name,
+            quantity: item.quantity,
+            price: item.menuItem.price
+        }));
+
+        const orderCode = generateOrderCode();
+        
+        // Create order data for QR code
+        const orderData = {
+            orderCode,
+            tableNumber,
+            items: orderItems,
+            totalAmount: cart.totalAmount,
+            timestamp: new Date()
+        };
+
+        // Generate QR code
+        const qrCode = await qr.toDataURL(JSON.stringify(orderData));
+
+        // Create new order
+        const order = new Order({
+            items: orderItems,
+            totalAmount: cart.totalAmount,
+            tableNumber,
+            orderCode,
+            qrCode,
+            status: 'pending'
+        });
+
+        await order.save();
+
+        // Clear the cart after successful order
+        cart.items = [];
+        await cart.save();
+
+        res.status(201).json({
+            message: 'Order placed successfully',
+            order: order,
+            qrCode: qrCode
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            error: error.message,
+            message: 'Error during checkout'
+        });
+    }
+};
