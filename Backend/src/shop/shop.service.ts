@@ -90,14 +90,13 @@ export class AboutusService {
         }
     }
 
-    async findOne(id:string) {
-        const aboutUs = await this.databaseService.shop.findUnique({
+
+    async findOne(id:number) {
+        const printer = await this.databaseService.shop.findUnique({
             where: { id: Number(id) },
         });
-        if (!aboutUs) {
-          throw new Error('About Us section not found');
-        }
-        return aboutUs;
+        return printer;
       }
 
 }
+

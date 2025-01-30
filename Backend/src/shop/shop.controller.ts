@@ -3,6 +3,8 @@ import { AboutusService } from './shop.service';
 import { CreateAboutDto } from './dto/create-shop.dto';
 import { UpdateAboutDto } from './dto/update-shop.dto';
 import { LoginDto } from './dto/login-shop.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { UserId } from './common/decorator/user-id.decorator';
 
 
 @Controller('shop')
@@ -31,12 +33,11 @@ export class AboutusController {
     ) {
         return this.aboutusService.update(+id, updateAboutUsDto);
     }
-
-    @Get('getshop/:id')
-    async findOne(@Param('id') id: string) {
+    
+    @UseGuards(AuthGuard('jwt'))
+    @Get('getshop')
+    async findOne(@UserId() id: number) {
         return this.aboutusService.findOne(id);
     }
-
-    
 }
 
