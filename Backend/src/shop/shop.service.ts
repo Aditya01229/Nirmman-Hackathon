@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { DatabaseService } from 'src/database/database.service';
+import { DatabaseService } from '../database/database.service';
 import { CreateAboutDto } from './dto/create-shop.dto';
 import { Prisma } from '@prisma/client';
 import { UpdateAboutDto } from './dto/update-shop.dto';
