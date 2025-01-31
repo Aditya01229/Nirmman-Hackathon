@@ -51,5 +51,10 @@ export class AboutusController {
     async markComplete(@UserId() id: number, @Param('id') queueId: number) {
         return this.aboutusService.markComplete(id, queueId);
     }
+
+    @Patch('markpaid/:id')
+    async markPaid(@Param('id') queueId: number) {
+        return this.aboutusService.markPaid(queueId);
+    }
 }
 

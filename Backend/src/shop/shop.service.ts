@@ -127,5 +127,15 @@ export class AboutusService {
         // Get the updated queue
         return this.getQueue(id);
       }
+
+      async markPaid(queueId: number) {
+        // Update the PrintRequest status to 'paid'
+        await this.databaseService.printRequest.update({
+          where: { id: Number(queueId) },
+          data: { paid: 'true' },
+        });
+      
+        return true;
+      }
 }
 
