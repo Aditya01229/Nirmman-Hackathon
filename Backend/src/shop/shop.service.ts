@@ -104,7 +104,8 @@ export class AboutusService {
         const queue = await this.databaseService.printRequest.findMany({
           where: {
             shopId: Number(id),
-            done: 'false'
+            done: 'false',
+            paid: 'true'
           },
           orderBy: { createdAt: 'asc' },
           include: {
