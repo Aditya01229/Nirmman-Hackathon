@@ -45,5 +45,11 @@ export class AboutusController {
     async getQueue(@UserId() id: number) {
         return this.aboutusService.getQueue(id);
     }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Get('markcomplete/:id')
+    async markComplete(@UserId() id: number, @Param('id') queueId: number) {
+        return this.aboutusService.markComplete(id, queueId);
+    }
 }
 

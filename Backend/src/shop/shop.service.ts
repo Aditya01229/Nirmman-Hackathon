@@ -102,7 +102,10 @@ export class AboutusService {
 
       async getQueue(id: number) {
         const queue = await this.databaseService.printRequest.findMany({
-          where: { shopId: Number(id) },
+          where: {
+            shopId: Number(id),
+            done: 'false'
+          },
           orderBy: { createdAt: 'asc' },
           include: {
             printFiles: true,  // Include the related PrintFiles
@@ -112,6 +115,17 @@ export class AboutusService {
         console.log(queue);
       
         return queue;
+      }
+
+      async markComplete(id: number, queueId: number) {
+        // Update the PrintRequest status to 'completed'
+        await this.databaseService.printRequest.update({
+          where: { id: Number(queueId) },
+          data: { done: 'true' },
+        });
+      
+        // Get the updated queue
+        return this.getQueue(id);
       }
 }
 
