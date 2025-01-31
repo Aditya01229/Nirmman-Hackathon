@@ -137,5 +137,9 @@ export class AboutusService {
       
         return true;
       }
+
+      async findAll() {
+        return this.databaseService.shop.findMany();
+      }
 }
 

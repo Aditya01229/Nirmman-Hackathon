@@ -56,5 +56,10 @@ export class AboutusController {
     async markPaid(@Param('id') queueId: number) {
         return this.aboutusService.markPaid(queueId);
     }
+
+    @Get('getallshops')
+    async findAll() {
+        return this.aboutusService.findAll();
+    }
 }
 
