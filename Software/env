@@ -1,0 +1,11 @@
+DATABASE_URL=postgresql://neondb_owner:npg_NH4AB5arCJqg@ep-frosty-wave-a8aeiszd-pooler.eastus2.azure.neon.tech/neondb?sslmode=require
+
+JWT_SECRET=nirmaan
+JWT_EXPIRE=1h
+
+CLOUDINARY_CLOUD_NAME=dhp070gpk
+CLOUDINARY_API_KEY=818632264649745
+CLOUDINARY_API_SECRET=5pnStSxip-e3loLJM4ZyPOnlHjY
+
+
+CLOUDINARY_URL=cloudinary://818632264649745:5pnStSxip-e3loLJM4ZyPOnlHjY@dhp070gpk
