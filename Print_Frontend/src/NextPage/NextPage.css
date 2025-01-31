@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #343a40; /* Dark background */
+    color: #ffffff; /* White text */
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Center the container vertically */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .next-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px; /* Increased padding for container */
+    background: linear-gradient(135deg, #495057, #6c757d); /* Gradient background */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+    width: 100%; /* Full width for the container */
+    max-width: 1200px; /* Increased maximum width for better layout */
+    height: auto; /* Allow height to adjust automatically */
+    overflow: hidden; /* Prevent overflow */
+  }
+  
+  h1 {
+    margin-bottom: 20px; /* Space below heading */
+    font-size: 24px; /* Increase heading size */
+  }
+  
+  .columns-container {
+    display: flex; /* Use flexbox to align columns horizontally */
+    flex-direction: column; /* Stack columns vertically */
+    width: 100%; /* Full width for the container */
+    align-items: center; /* Center columns horizontally */
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 70%; /* Limit height to maintain structure */
+    margin-bottom: 20px; /* Space below the columns */
+  }
+  
+  .print-column {
+    border: 1px solid #ced4da; /* Border for each column */
+    border-radius: 10px; /* Rounded corners for each column */
+    padding: 20px; /* Padding inside each column */
+    margin: 15px 0; /* Space above and below columns */
+    width: 90%; /* Full width for each column */
+    max-width: 600px; /* Limit maximum width */
+    background-color: #6c757d; /* Background color */
+    display: flex; /* Use flex to center content */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    transition: transform 0.2s; /* Animation for hover effect */
+  }
+  
+  .print-column:hover {
+    transform: scale(1.02); /* Scale effect on hover */
+  }
+  
+  .input-group {
+    margin-bottom: 15px; /* Space below input group */
+    width: 100%; /* Full width for input group */
+    display: flex; /* Flexbox for alignment */
+    justify-content: space-between; /* Space between label and input */
+    align-items: center; /* Center items vertically */
+  }
+  
+  label {
+    margin-right: 10px; /* Space between label and input */
+    flex: 0 0 40%; /* Set width for labels */
+    text-align: right; /* Right align labels for better appearance */
+  }
+  
+  input[type="file"],
+  input[type="number"],
+  select {
+    padding: 10px; /* Increased padding for inputs */
+    border-radius: 5px; /* Rounded edges */
+    border: 1px solid #ced4da; /* Border styling */
+    flex: 1; /* Take remaining space */
+    margin-left: 10px; /* Space between label and input */
+  }
+  
+  .upload-button {
+    padding: 12px 24px; /* Increased button padding */
+    border: none;
+    border-radius: 5px; /* Rounded edges */
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff; /* White text for buttons */
+    background-color: #28a745; /* Green background for Upload button */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    margin-top: 20px; /* Space above the button */
+  }
+  
+  .upload-button:hover {
+    opacity: 0.9; /* Slightly fade on hover */
+  }
+  
+  .total-amount-container {
+    margin-top: 20px; /* Space above total amount display */
+    padding: 20px; /* Padding around the total amount display */
+    background-color: #495057; /* Background color for total amount box */
+    border-radius: 10px; /* Rounded corners */
+    width: 100%; /* Full width for total amount container */
+    max-width: 600px; /* Limit maximum width */
+    text-align: center; /* Center text */
+  }
+  
+  .total-amount-container h2 {
+    margin: 0; /* Remove default margin */
+    font-size: 20px; /* Font size for total amount */
+  }
+  
+
+  .pay-now-button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .pay-now-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

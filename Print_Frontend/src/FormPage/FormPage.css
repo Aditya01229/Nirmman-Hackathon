@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #343a40; /* Dark background for the body */
+    color: #ffffff; /* White text for contrast */
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #495057; /* Darker background for form */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 50px; /* Increased padding for better spacing */
+    max-width: 600px; /* Increased width for the form container */
+    margin: auto; /* Center the form */
+    margin-top: 100px; /* Add top margin for better visual spacing */
+  }
+  
+  .form-title {
+    font-size: 26px; /* Increased title size */
+    font-weight: bold;
+    color: #ffffff; /* White text for title */
+    margin-bottom: 30px; /* Space below the title */
+  }
+  
+  .input-group {
+    display: flex; /* Align inputs in a row */
+    justify-content: space-between; /* Space between inputs */
+    width: 100%; /* Full width */
+    margin-bottom: 30px; /* Space below input group */
+  }
+  
+  .input {
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 48%; /* Set width to take half of the row */
+    transition: border-color 0.3s;
+  }
+  
+  .input:not(:last-child) {
+    margin-right: 20px; /* Space between name and email fields */
+  }
+  
+  .input:focus {
+    border-color: #007bff; /* Highlight on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .upload-image {
+    width: 400px; /* Adjust width for better visual impact */
+    height: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Show pointer cursor on hover */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover effect */
+  }
+  
+  .upload-image:hover {
+    transform: scale(1.05); /* Slightly enlarge image on hover */
+  }
+  
+  .animate-click {
+    transform: scale(0.95); /* Slightly shrink image on click */
+    transition: transform 0.2s; /* Animation for click effect */
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3); /* Shadow effect on click */
+  }
+  
