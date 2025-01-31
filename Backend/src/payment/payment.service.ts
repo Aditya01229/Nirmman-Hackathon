@@ -16,7 +16,7 @@ export class PaymentService {
       mobileNumber: createOrderDto.mobileNumber,
       amount: createOrderDto.amount * 100,
       merchantTransactionId: orderId,
-      redirectUrl: `${PaymentConfig.REDIRECT_URL}/?id=${orderId}`, // ✅ Fixed template string
+      redirectUrl: `${PaymentConfig.REDIRECT_URL}/${createOrderDto.request_id}`, // ✅ Fixed template string
       redirectMode: 'POST',
       paymentInstrument: {
         type: 'PAY_PAGE'
